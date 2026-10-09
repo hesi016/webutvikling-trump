@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>TrumpVerse API Documentation</title>
+  <link rel="stylesheet" href="index.css">
+</head>
+<body>
+  <header class="header">
+    <h1>TrumpVerse API Documentation</h1>
+    <p>Explore the resources in the TrumpVerse API to manage staff and retrieve their details.</p>
+  </header>
+
+  <main class="main">
+    <section class="section">
+      <h2>REST</h2>
+      <p><strong>Base URL:</strong> <code>http://localhost:5027/api</code></p>
+      <p>The base URL contains information about all available API resources. All requests are GET requests and go over HTTPS. All responses will return data in JSON format.</p>
+      <pre>
+{
+  "staff": "http://localhost:5027/api/Staff",
+  "staffById": "http://localhost:5027/api/Staff/{id}",
+  "staffByStatus": "http://localhost:5027/api/Staff/status/{status}"
+}
+      </pre>
+      <h3>There are currently three available resources:</h3>
+      <ul>
+        <li><strong>Staff:</strong> Retrieve all staff members.</li>
+        <li><strong>Staff by ID:</strong> Retrieve details of a specific staff member by ID.</li>
+        <li><strong>Staff by Status:</strong> Retrieve staff members filtered by their status.</li>
+      </ul>
+    </section>
+    
+    <section class="section">
+      <h2>GET Endpoints</h2>
+
+      <article class="endpoint">
+        <h3>GET <code>/api/Staff</code></h3>
+        <p>Retrieve a list of all staff members.</p>
+        <h4>Response Example</h4>
+        <pre>
+          {
+            "id": 2,
+            "firstName": "Brooke",
+            "lastName": "Rollins",
+            "position": "Secretary of Agriculture",
+            "status": "active",
+            "profileImage": "Brooke_Rollins.jpg"
+          },
+          {
+            "id": 7,
+            "firstName": "Dan",
+            "lastName": "Brouillette",
+            "position": "Secretary of Energy ",
+            "status": "Retired",
+            "profileImage": "Dan_Brouillette.jpg"
+          },
+          {
+            "id": 8,
+            "firstName": "David",
+            "lastName": "Bernhardt",
+            "position": "Secretary of the Interior",
+            "status": "retired",
+            "profileImage": "David_Bernhardt.jpg"
+          },
+          {
+            "id": 9,
+            "firstName": "Mike",
+            "lastName": "Pence",
+            "position": "Vice President ",
+            "status": "retired",
+            "profileImage": "Mike_Pence.jpg"
+          },
+    ...
+  ]
+        </pre>
+      </article>
+
+      <article class="endpoint">
+        <h3>GET <code>/api/Staff/{id}</code></h3>
+        <p>Retrieve details of a specific staff member by their ID.</p>
+        <h4>Path Parameters</h4>
+        <ul>
+          <li><strong>id</strong>: (required, integer) The ID of the staff member.</li>
+        </ul>
+        <h4>Response Example</h4>
+        <pre>
+{
+  "id": 2,
+  "firstName": "Brooke",
+  "lastName": "Rollins",
+  "position": "Secretary of Agriculture",
+  "status": "active",
+  "profileImage": "Brooke_Rollins.jpg"
+}
+        </pre>
+      </article>
+
+      <article class="endpoint">
+        <h3>GET <code>/api/Staff/status/{status}</code></h3>
+        <p>Retrieve staff members filtered by their status.</p>
+        <h4>Path Parameters</h4>
+        <ul>
+          <li><strong>status</strong>: (required, string) The status to filter staff by (<code>Active</code>, <code>Inactive</code>).</li>
+        </ul>
+        <h4>Response Example</h4>
+        <pre>
+[
+    {
+      "id": 2,
+      "firstName": "Brooke",
+      "lastName": "Rollins",
+      "position": "Secretary of Agriculture",
+      "status": "active",
+      "profileImage": "Brooke_Rollins.jpg"
+    },
+    {
+      "id": 11,
+      "firstName": "Doug",
+      "lastName": "Burgum",
+      "position": "Secretary of Interior",
+      "status": "active",
+      "profileImage": "Doug_Burgum.jpg"
+    },
+    ...
+  ]
+        </pre>
+      </article>
+    </section>
+  </main>
+  <footer class="footer">
+    <p>TrumpVerse API &copy; 2024</p>
+  </footer>
+</body>
+</html>
